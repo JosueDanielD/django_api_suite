@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import firebase_admin
+from firebase_admin import credentials # Import Firebase Admin credentials
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     "homepage",
     "rest_framework",  # Agregar Django REST Framework
     "demo_rest_api", # Registro de nueva aplicación
+    #"firebase-admin",  # Registro de nueva aplicación para Firebase
+    "landing_api",  # Nueva aplicación Landing API
 ]
 
 MIDDLEWARE = [
@@ -128,3 +132,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+FIREBASE_CREDENTIALS_PATH = credentials.Certificate("secrets/landing-key.json")  # Ruta al archivo de credenciales de Firebase
+# Inicializar Firebase Admin SDK si es necesario
+firebase_admin.initialize_app(FIREBASE_CREDENTIALS_PATH, {
+    'databaseURL': 'https://landing-c18c6-default-rtdb.firebaseio.com'  # Reemplaza con tu URL de base de datos
+})
