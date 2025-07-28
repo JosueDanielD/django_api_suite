@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "homepage",
+    "rest_framework",  # Agregar Django REST Framework
+    "demo_rest_api", # Registro de nueva aplicación
 ]
 
 MIDDLEWARE = [
